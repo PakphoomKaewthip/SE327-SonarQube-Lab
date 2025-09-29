@@ -4,8 +4,10 @@ import org.junit.jupiter.api.Test;
 import se.se327.Calculator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CalculatorTest {
+
     @Test
     void testAdd() {
         Calculator calculator = new Calculator();
@@ -28,5 +30,13 @@ class CalculatorTest {
     void testDivide() {
         Calculator calculator = new Calculator();
         assertEquals(2.0, calculator.divide(4, 2), 0.01);
+    }
+
+    @Test
+    void testDivideByZeroThrowsException() {
+        Calculator calculator = new Calculator();
+        assertThrows(IllegalArgumentException.class,
+                () -> calculator.divide(5, 0),
+                "Expected divide(5, 0) to throw IllegalArgumentException");
     }
 }
